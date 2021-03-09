@@ -56,7 +56,7 @@ const pizzaController = {
   // this is the mongoose version of find one with the id and update
   // need the third arguement with { new: true }, otherwise, it will send back the original statement
   updatePizza({ params, body }, res) {
-      Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbPizzaData => {
           if (!dbPizzaData) {
               res.status(404).json({ message: 'No pizza found with this id!' });
